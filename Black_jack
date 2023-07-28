@@ -21,8 +21,12 @@ for i in player:
     sum_num += i
 
 if sum_num>21:
-    print("Its a BUST, You lost!")
-#Here we are assuming that when a card is drawn from a deck still it has equal chances of being drawn again like 11,11.
+    print("Its a BUST, You lost!") #Here we are assuming that when a card is drawn from a deck still it has equal chances of being drawn again like 11,11.There are infinite cards.
+elif sum_num==21:
+    print("Its a black jack,You Won!)
+elif sum_num== sum_deal:
+    print("Its a clash!")
+
 
 #print(total)
 
@@ -35,9 +39,7 @@ sum_deal=0
 for i in dealer:
     sum_deal += i
 
-
-
-while sum_num<=21:
+while sum_num<21:
     hit_var=input(f"Your sum of cards is {sum_num}, would you like to hit or stand?: ").lower()
     if hit_var=="hit":
         hit(player)
@@ -51,9 +53,6 @@ while sum_num<=21:
         elif sum_num==21:
             print("Blackjack, You won!")
             break
-    elif sum_num==21:
-        print("Blackjack, You won")
-        break
     elif sum_num== sum_deal:
         print("Its a clash!")
         break
