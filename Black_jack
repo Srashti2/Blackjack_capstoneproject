@@ -61,7 +61,7 @@ while sum_num<=21:
         if sum_deal<sum_num:
             while sum_deal<21:
                 hit(dealer)
-                #assuming that dealer is picking up cards until its greater than player's total and less than 21.
+                #assuming that dealer is picking up cards until its greater than player's total and less than 21, He is taking chances to win.
                 sum_deal = 0
                 for i in dealer:
                     sum_deal += i
