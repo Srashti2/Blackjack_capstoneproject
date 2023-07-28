@@ -1,1 +1,117 @@
+import random
+def hit(player):
+    n=1
+    for i in range(n):
+        player.append(random.randint(1,11))
+    #print(player)
 
+def hit(dealer):
+    n=1
+    for i in range(n):
+        dealer.append(random.randint(1,11))
+    #print(dealer)
+
+cards= [2,3,4,5,6,7,8,9,10,10,10,10,11,1]
+
+player= random.choices(cards,k=2)
+print(f"Two cards drawn by you are {player}")
+
+sum_num = 0
+for i in player:
+    sum_num += i
+
+#print(total)
+
+#print(type(player[0]))
+
+dealer = random.choices(cards,k=2)
+print(f"Dealer's card is {dealer[0]} and another card is hidden")
+
+sum_deal=0
+for i in dealer:
+    sum_deal += i
+
+def deal_break():
+    if sum_num>21:
+        print("Its a BUST, You lost!") #Here we are assuming that when a card is drawn from a deck still it has equal chances of being drawn again like 11,11.There are infinite cards.
+    elif sum_num==21:
+        print("Its a black jack,You Won!")
+    elif sum_num== sum_deal:
+        print("Its a clash!")
+
+
+deal_break()
+
+while sum_num<21:
+    hit_var=input(f"Your sum of cards is {sum_num}, would you like to hit or stand?: ").lower()
+    if hit_var=="hit":
+        hit(player)
+        sum_num=0
+        for i in player:
+            sum_num += i
+        print (sum_num)
+        if sum_num>21:
+            print(f"Your card's total is {sum_num} ")
+            print("BUST!")
+        elif sum_num==21:
+            print("Blackjack, You won!")
+            break
+        # elif sum_num== sum_deal:
+        #     print("Its a clash!")
+        #     break
+    elif hit_var=="stand":
+        if sum_deal<sum_num:
+            while sum_deal<21:
+                hit(dealer)
+                #assuming that dealer is picking up cards until its greater than player's total and less than 21.
+                sum_deal = 0
+                for i in dealer:
+                    sum_deal += i
+                if sum_deal>sum_num and sum_deal<=21:
+                    print(f"dealer's card {dealer}")
+                    print(f"Your card's total is {sum_num} ")
+                    print(f"Dealer's card total is {sum_deal}")
+                    print("You loose!")
+                    break
+                elif sum_num==sum_deal:
+                    print("Its a clash!")
+                    print(f"Dealer's card {dealer}")
+                    break
+                elif sum_deal==21:
+                    print ("bust,You lost")
+                    break
+                else:
+                    print(f"dealer's card {dealer}")
+                    print(f"Your card's total is {sum_num} ")
+                    print(f"Dealer's card total is {sum_deal}")
+                    print("you win!")
+            break
+        elif sum_num == sum_deal:
+            print ("Its a clash!")
+            print (f"Dealer's card {dealer}")
+            break
+        elif sum_deal == 21:
+            print(dealer)
+            print ("bust,You lost cause dealer got Blackjack")
+            break
+        elif sum_deal>sum_num and sum_deal<=21:
+            print (f"dealer's card {dealer}")
+            print (f"Your card's total is {sum_num} ")
+            print (f"Dealer's card total is {sum_deal}")
+            print ("You loose!")
+        else:
+            print (f"dealer's card {dealer}")
+            print (f"Your card's total is {sum_num} ")
+            print (f"Dealer's card total is {sum_deal}")
+            print ("you win!")
+
+            break
+        break
+
+
+
+#Rules
+#card total should not be more than 21 .
+#jack, queen and king are assigned as 10 value.
+#Ace is either taken as 1 or 11.
+#Two options are given either to hit or to stand.
