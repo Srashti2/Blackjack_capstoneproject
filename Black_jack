@@ -1,5 +1,4 @@
 import random
-
 def hit(player):
     n=1
     for i in range(n):
@@ -12,7 +11,7 @@ def hit(dealer):
         dealer.append(random.randint(1,11))
     #print(dealer)
 
-cards= [2,3,4,5,6,7,8,9,10,10,10,11,1]
+cards= [2,3,4,5,6,7,8,9,10,10,10,10,11,1]
 
 player= random.choices(cards,k=2)
 print(f"Two cards drawn by you are {player}")
@@ -20,6 +19,11 @@ print(f"Two cards drawn by you are {player}")
 sum_num = 0
 for i in player:
     sum_num += i
+
+if sum_num>21:
+    print("Its a BUST, You lost!")
+#Here we are assuming that when a card is drawn from a deck still it has equal chances of being drawn again like 11,11.
+
 #print(total)
 
 #print(type(player[0]))
@@ -30,6 +34,8 @@ print(f"Dealer's card is {dealer[0]} and another card is hidden")
 sum_deal=0
 for i in dealer:
     sum_deal += i
+
+
 
 while sum_num<=21:
     hit_var=input(f"Your sum of cards is {sum_num}, would you like to hit or stand?: ").lower()
@@ -55,6 +61,7 @@ while sum_num<=21:
         if sum_deal<sum_num:
             while sum_deal<21:
                 hit(dealer)
+                #assuming that dealer is picking up cards until its greater than player's total and less than 21.
                 sum_deal = 0
                 for i in dealer:
                     sum_deal += i
